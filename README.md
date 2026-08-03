@@ -1,5 +1,7 @@
 # MeshCentral on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/meshcentral?referralCode=ZqgrJ0)
+
 Deploy MeshCentral 1.2.4 with a generated full administrator, persistent device state, files, recordings, certificates, and backups.
 
 The Deploy on Railway button is added after the published route is verified.
