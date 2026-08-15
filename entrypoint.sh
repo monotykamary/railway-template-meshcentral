@@ -16,7 +16,7 @@ if [ ! -f "$config" ]; then
   node <<'JS'
 const fs = require('fs');
 const config = {
-  $schema: 'https://raw.githubusercontent.com/Ylianst/MeshCentral/1.2.4/meshcentral-config-schema.json',
+  $schema: 'https://raw.githubusercontent.com/Ylianst/MeshCentral/1.2.5/meshcentral-config-schema.json',
   settings: {
     cert: process.env.MESHCENTRAL_HOSTNAME,
     port: 8080,
