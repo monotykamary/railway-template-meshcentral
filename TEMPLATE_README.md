@@ -22,7 +22,7 @@ Sign in with `MESHCENTRAL_ADMIN_USER` and the generated `MESHCENTRAL_ADMIN_PASSW
 
 ### Implementation Details
 
-The adapter writes a stable TLS-offload configuration, maps all four writable MeshCentral directories into one volume, creates the initial administrator with the upstream CLI, disables further public registration, and runs MeshCentral on internal HTTP port 8080 with external alias 443. WebRTC is disabled.
+The adapter writes a stable TLS-offload configuration, routes MeshCentral data, files, recordings, and generated backups into one volume with explicit path settings, creates the initial administrator with the upstream CLI, disables further public registration, and runs MeshCentral on internal HTTP port 8080 with external alias 443. WebRTC is disabled.
 
 This one-replica topology does not represent optional direct TCP, UDP, CIRA, or LAN-discovery listeners. Do not scale horizontally with the local database.
 
