@@ -6,19 +6,23 @@ set -eu
 : "${MESHCENTRAL_ADMIN_EMAIL:?MESHCENTRAL_ADMIN_EMAIL is required}"
 : "${MESHCENTRAL_ADMIN_PASSWORD:?MESHCENTRAL_ADMIN_PASSWORD is required}"
 
-for name in data files backups web; do
-  mkdir -p "/data/meshcentral-$name"
-  rm -rf "/opt/meshcentral/meshcentral-$name"
-  ln -s "/data/meshcentral-$name" "/opt/meshcentral/meshcentral-$name"
+data_path=/data/meshcentral-data
+files_path=/data/meshcentral-files
+backups_path=/data/meshcentral-backups
+recordings_path=/data/meshcentral-recordings
+for path in "$data_path" "$files_path" "$backups_path" "$recordings_path"; do
+  mkdir -p "$path"
 done
-config=/opt/meshcentral/meshcentral-data/config.json
+config=$data_path/config.json
 if [ ! -f "$config" ]; then
   node <<'JS'
 const fs = require('fs');
 const config = {
-  $schema: 'https://raw.githubusercontent.com/Ylianst/MeshCentral/1.2.4/meshcentral-config-schema.json',
+  $schema: 'https://raw.githubusercontent.com/Ylianst/MeshCentral/1.2.5/meshcentral-config-schema.json',
   settings: {
     cert: process.env.MESHCENTRAL_HOSTNAME,
+    dataPath: '/data/meshcentral-data',
+    filesPath: '/data/meshcentral-files',
     port: 8080,
     aliasPort: 443,
     redirPort: 0,
@@ -28,7 +32,11 @@ const config = {
     trustedProxy: true,
     SelfUpdate: false,
     AllowFraming: false,
-    WebRTC: false
+    WebRTC: false,
+    autoBackup: {
+      backupPath: '/data/meshcentral-backups',
+      backupOtherFolders: true
+    }
   },
   domains: {
     '': {
@@ -36,18 +44,23 @@ const config = {
       NewAccounts: false,
       minify: true,
       localSessionRecording: true,
+      sessionRecording: {
+        filepath: '/data/meshcentral-recordings'
+      },
       userNameIsEmail: false
     }
   }
 };
-fs.writeFileSync('/opt/meshcentral/meshcentral-data/config.json', JSON.stringify(config, null, 2));
+fs.writeFileSync('/data/meshcentral-data/config.json', JSON.stringify(config, null, 2));
 JS
 fi
 
-marker=/opt/meshcentral/meshcentral-data/.railway-admin-created
+marker=$data_path/.railway-admin-created
 if [ ! -f "$marker" ]; then
   node /opt/meshcentral/meshcentral/meshcentral \
-    --configfile "$config" \
+    --datapath "$data_path" \
+    --filespath "$files_path" \
+    --configfile config.json \
     --createaccount "$MESHCENTRAL_ADMIN_USER" \
     --pass "$MESHCENTRAL_ADMIN_PASSWORD" \
     --email "$MESHCENTRAL_ADMIN_EMAIL" \
@@ -56,4 +69,7 @@ if [ ! -f "$marker" ]; then
 fi
 
 unset MESHCENTRAL_ADMIN_PASSWORD MESHCENTRAL_SESSION_KEY
-exec node /opt/meshcentral/meshcentral/meshcentral --configfile "$config"
+exec node /opt/meshcentral/meshcentral/meshcentral \
+  --datapath "$data_path" \
+  --filespath "$files_path" \
+  --configfile config.json

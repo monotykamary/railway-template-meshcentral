@@ -2,14 +2,14 @@
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/meshcentral?referralCode=ZqgrJ0)
 
-Deploy MeshCentral 1.2.4 with a generated full administrator, persistent device state, files, recordings, certificates, and backups.
+Deploy MeshCentral 1.2.5 with a generated full administrator, persistent device state, files, recordings, certificates, and backups.
 
 The Deploy on Railway button is added after the published route is verified.
 
 ## What this deploys
 
-- MeshCentral `1.2.4-debian`, pinned to the official Linux/AMD64 image digest
-- Local MeshCentral database and all writable directories on one daily-backed-up volume
+- MeshCentral `1.2.5-debian`, pinned to the official Linux/AMD64 image digest
+- Local database, files, recordings, certificates, and generated backups on one daily-backed-up volume
 - Generated administrator password and stable session key
 - Plain HTTP behind Railway's managed HTTPS proxy with external port alias `443`
 
@@ -36,9 +36,9 @@ BASE_URL=https://your-domain.example ADMIN_USER=admin ADMIN_PASSWORD=... python3
 
 ## Upstream
 
-- Source: https://github.com/Ylianst/MeshCentral/tree/1.2.4
-- Release: https://github.com/Ylianst/MeshCentral/releases/tag/1.2.4
-- Docker documentation: https://github.com/Ylianst/MeshCentral/blob/1.2.4/docker/README.md
+- Source: https://github.com/Ylianst/MeshCentral/tree/1.2.5
+- Release: https://github.com/Ylianst/MeshCentral/releases/tag/1.2.5
+- Docker documentation: https://github.com/Ylianst/MeshCentral/blob/1.2.5/docker/README.md
 - License: Apache License 2.0
 
 This repository contains Railway adapters and documentation. MeshCentral remains copyright its upstream contributors and is not affiliated with Railway.

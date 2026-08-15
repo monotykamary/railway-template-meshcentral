@@ -2,8 +2,8 @@
 
 ## MeshCentral
 
-- Version: 1.2.4
-- Source: https://github.com/Ylianst/MeshCentral/tree/1.2.4
+- Version: 1.2.5
+- Source: https://github.com/Ylianst/MeshCentral/tree/1.2.5
 - Copyright: Ylian Saint-Hilaire and contributors
 - License: Apache License 2.0
 
