@@ -2,7 +2,7 @@
 
 ## About Hosting MeshCentral
 
-MeshCentral is an open-source remote device management platform for browser-based desktop, terminal, files, inventory, events, and agent administration. This template deploys stable version 1.2.5 with a generated full administrator and durable local state.
+MeshCentral is an open-source remote device management platform for browser-based desktop, terminal, files, inventory, events, and agent administration. This template deploys stable version 1.2.6 with a generated full administrator and durable local state.
 
 Sign in with `MESHCENTRAL_ADMIN_USER` and the generated `MESHCENTRAL_ADMIN_PASSWORD` service variable.
 
