@@ -8,7 +8,7 @@ The Deploy on Railway button is added after the published route is verified.
 
 ## What this deploys
 
-- MeshCentral `1.2.6-debian`, pinned to the official Linux/AMD64 image digest
+- MeshCentral `1.3.1-debian`, pinned to the official Linux/AMD64 image digest
 - Local database, files, recordings, certificates, and generated backups on one daily-backed-up volume
 - Generated administrator password and stable session key
 - Plain HTTP behind Railway's managed HTTPS proxy with external port alias `443`
